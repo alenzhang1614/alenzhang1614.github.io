@@ -1,0 +1,21 @@
+{
+  "name": "alenzhang1614.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "vuepress dev docs"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alenzhang1614/alenzhang1614.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alenzhang1614/alenzhang1614.github.io/issues"
+  },
+  "homepage": "https://github.com/alenzhang1614/alenzhang1614.github.io#readme"
+}
