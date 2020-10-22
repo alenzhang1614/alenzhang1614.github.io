@@ -18,7 +18,7 @@
 export default {
     methods: {
         enterIndex () {
-            this.$router.push("/senior-js/jquery/1")
+            this.$router.push("/Home.html")
         }
     }
 
