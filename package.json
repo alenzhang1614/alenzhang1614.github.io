@@ -19,6 +19,11 @@
     },
     "homepage": "https://github.com/alenzhang1614/alenzhang1614.github.io#readme",
     "dependencies": {
-        "stylus-loader": "^4.1.1"
+        "async-validator": "^1.11.5",
+        "element-ui": "^2.15.9",
+        "stylus-loader": "^3.0.2"
+    },
+    "devDependencies": {
+        "vuepress": "^1.9.7"
     }
 }

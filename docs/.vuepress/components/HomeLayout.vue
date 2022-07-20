@@ -4,7 +4,6 @@
             <div class="welcome-text">
                 <h3 class="textCenter">欢迎来到aleneZhang的博客</h3>
                 <p class="textCenter">天地万物，包罗万象，你想知道的都在这里</p>
-
             </div>
             <div class="button"
                  @click="enterIndex">
@@ -18,7 +17,7 @@
 export default {
     methods: {
         enterIndex () {
-            this.$router.push("/Home.html")
+            this.$router.replace("/Home.html")
         }
     }
 
@@ -36,20 +35,24 @@ export default {
     left 50%
     top 50%
     transform translate(-50%, -50%)
-    &::after, &::before
-        position absolute
-        left 0
-        top 0
-        display block
-        content '\200B'
-        line-height 0
-        width 100%
-        height 100%
-        border 1px solid #ffffff
-    &:before
-        clip rect(0, 50px, 50px, 0)
-    &::after
-        clip rect(clac(100% - 50px), clac(100% - 50px), 50px, 50px)
+    color #fff
+    font-size 30px
+    h3 
+      font-size: 80px
+    // &::after, &::before
+    //     position absolute
+    //     left 0
+    //     top 0
+    //     display block
+    //     content '\200B'
+    //     line-height 0
+    //     width 100%
+    //     height 100%
+    //     border 1px solid #ffffff
+    // &:before
+    //     clip rect(0, 50px, 50px, 0)
+    // &::after
+    //     clip rect(clac(100% - 50px), clac(100% - 50px), 50px, 50px)
 .button
     position absolute
     left 50%
@@ -67,9 +70,9 @@ export default {
         background-image linear-gradient(180deg, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 50%)
         background-clip text
         animation move 1s linear infinite
-.homeFade-enter-active, .fade-leave-active
-    transition height 3s
-.home-enter, .fade-leave-to
+.homeFade-enter-active, .homeFade-leave-active
+    transition height 0.5s
+.homeFade-enter, .homeFade-leave-to
     height 0
 @keyframes move
     for i in 0 .. 10
