@@ -2,7 +2,7 @@ module.exports = [
     {
         title: '核心功能',
         collapsable: true,
-        sidebarDepth: 1, 
+        sidebarDepth: 2, 
         children: [
              ['1.md', '子菜单1'],
              ['2.md', '子菜单1'],

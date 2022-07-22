@@ -34,7 +34,11 @@ export default {
       if(!sidebarConfig) return []
       let key = Object.keys(sidebarConfig).find(item=>this.$route.path.includes(item))
       if(key){   
-        return this.$site?.pages?.filter(page=>page.path.includes(key))?.map(item=>({...item,link:item.path,text:item.title}))
+        return this.$site?.pages?.filter(page=>page.path.includes(key))?.map(item=>{
+          const side = sidebarConfig[key]
+          console.log(side)
+          return {...item,link:item.path,text:item.title}
+        })
       }
 
     }
