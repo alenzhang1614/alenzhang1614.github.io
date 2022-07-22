@@ -17,7 +17,7 @@
 export default {
     methods: {
         enterIndex () {
-            this.$router.replace("/Home.html")
+            this.$router.replace("/senior-js/jquery/1.html")
         }
     }
 

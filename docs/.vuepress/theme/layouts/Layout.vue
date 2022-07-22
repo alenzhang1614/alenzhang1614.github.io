@@ -30,7 +30,13 @@ export default {
       return this.$themeConfig.nav
     },
     siderbar(){
-      return this.$themeConfig.sidebar
+      let sidebarConfig = this.$site.themeConfig?.sidebar
+      if(!sidebarConfig) return []
+      let key = Object.keys(sidebarConfig).find(item=>this.$route.path.includes(item))
+      if(key){   
+        return this.$site?.pages?.filter(page=>page.path.includes(key))?.map(item=>({...item,link:item.path,text:item.title}))
+      }
+
     }
   }
 }
