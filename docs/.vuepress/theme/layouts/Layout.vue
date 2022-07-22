@@ -79,4 +79,6 @@ section
 .content
   height: 100%
   overflow: auto
+  padding: 20px
+  
 </style>
