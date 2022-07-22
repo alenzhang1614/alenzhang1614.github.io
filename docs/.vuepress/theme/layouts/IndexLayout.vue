@@ -1,24 +1,22 @@
 <template>
   <section>
     <banner></banner>
-   
       <el-header class="header-wrap">
         <h1>alenzhang的博客</h1>
-        <menubar mode="horizontal" :menus="$themeConfig.nav"></menubar>
+        <menubar mode="horizontal" :menus="navs"></menubar>
       </el-header>
       <el-container>
         <el-aside width="260px">
-          <menubar :menus="$themeConfig.sidebar"></menubar>
+          <menubar :menus="siderbar"></menubar>
         </el-aside>
-
         <Content />
       </el-container>
-
   </section>
 </template>
 <script>
 import banner from '../components/Banner'
 import menubar from '../components/menubar'
+
 export default {
   components: {
     banner,
@@ -27,6 +25,14 @@ export default {
   data() {
     return {}
   },
+  computed:{
+    navs(){
+      return this.$themeConfig.nav
+    },
+    siderbar(){
+      return this.$themeConfig.sidebar
+    }
+  }
 }
 </script>
 <style lang="stylus" scoped>

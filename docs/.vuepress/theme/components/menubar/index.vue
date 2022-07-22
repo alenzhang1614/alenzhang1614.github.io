@@ -7,6 +7,7 @@
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b"
+    router
   >
     <menuItem v-for="(menu,index) in menus" :key="index" :menu="menu" :index='index'/>
   </el-menu>
