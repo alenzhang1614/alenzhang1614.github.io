@@ -17,7 +17,7 @@ export default {
       default: ()=>{}
     },
     index:{
-      type:String
+      type:String|Number
     }
    
   },

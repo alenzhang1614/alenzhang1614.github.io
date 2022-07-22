@@ -1,15 +1,14 @@
 <template>
   <el-menu
-    :default-active="activeIndex2"
-    class="el-menu-demo"
+  
     :mode="mode"
-    @select="handleSelect"
+ 
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b"
     router
   >
-    <menuItem v-for="(menu,index) in menus" :key="index" :menu="menu" :index='index'/>
+    <menuItem v-for="(menu,index) in menus" :key="index" :menu="menu" :index='index.toString()'/>
   </el-menu>
 </template>
 <script>

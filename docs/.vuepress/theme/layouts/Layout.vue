@@ -9,7 +9,8 @@
       <el-aside width="260px">
         <menubar :menus="siderbar"></menubar>
       </el-aside>
-      <Content />
+      <div class="content"><Content /></div>
+      
     </el-container>
   </section>
 </template>
@@ -41,9 +42,12 @@ export default {
           text:item.title,
           items: item.children.map(child => {
             const title = child[1]
-            console.log(title)
+           
+          
             const page = pages.find(page => page.relativePath.includes(child[0])) || {}
-            if (title) {
+             console.log(page,title)
+            if ( Array.isArray(child)&&title) {
+               
               page.title = title
              
             }
@@ -72,4 +76,7 @@ section
   background-color rgb(84, 92, 100)
 .el-container
   height calc(100vh - 155px - 60px)
+.content
+  height: 100%
+  overflow: auto
 </style>

@@ -2,9 +2,9 @@ module.exports = [
     {
         text: 'JavaScript进阶',
         items: [
-            { text: '框架的设计 jQuery源码分析', link: '/senior-js/jquery/1' },
-            { text: '函数式编程 Underscore源码分析', link: '/senior-js/underscore/1' },
-            { text: '模块化编程 自研模块加载器', link: '/senior-js/module/1' },
+            { text: '手写源码', link: '/senior-js/js/' },
+            // { text: '函数式编程 Underscore源码分析', link: '/senior-js/underscore/1' },
+            // { text: '模块化编程 自研模块加载器', link: '/senior-js/module/1' },
         ]
     },
     {
@@ -31,8 +31,5 @@ module.exports = [
             { text: 'TODO-3', link: '/node/TODO3/' },
         ]
     },
-    {
-        text: 'Github',
-        link: 'https://github.com/CoderMonkie/v-blog'
-    },
+  
 ]
