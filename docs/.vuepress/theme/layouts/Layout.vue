@@ -6,7 +6,7 @@
       <menubar mode="horizontal" :menus="navs"></menubar>
     </el-header>
     <el-container>
-      <a target="_blank" href="../../../inerview/resume/web前端 6年经验 张爱玲.doc">简历</a>
+  
       <el-aside width="260px" v-if="siderbar?.length">
         <menubar :menus="siderbar"></menubar>
       </el-aside>
@@ -60,6 +60,7 @@ export default {
       })
     },
   },
+  mounted:{}
 }
 </script>
 <style lang="stylus" scoped>

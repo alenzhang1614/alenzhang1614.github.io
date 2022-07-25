@@ -20,7 +20,9 @@
     "homepage": "https://github.com/alenzhang1614/alenzhang1614.github.io#readme",
     "dependencies": {
         "async-validator": "^1.11.5",
+        "docx-preview": "^0.1.11",
         "element-ui": "^2.15.9",
+        "jszip": "^3.10.0",
         "stylus-loader": "^3.0.2"
     },
     "devDependencies": {
