@@ -1,23 +1,22 @@
 # 手写promise
 ## 什么是Promise
-:::tip
-Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及该异步操作的结果值。
-目的
-1.首先定义构造函数Promise，外面要调用，返回Promise(先搭框架)
-2.实现原型上的方法
-3.实现构造函数上的方法
-::: 
-实现步骤
-1..默认promise实例对象的值是初识状态是pending，通过new调用this指向实例对象，通过this.status给实例对象添加状态
-2.还要定义一步结果的值，this.data=undefined作为异步返回值
-3..promise中穿了一个函数executor，需要立即调用,executor(resolve, reject)传参为两个函数，定义resolve，和reject
-4.. resolve做的事情：改变实力对象的状态为fulfilled，在严格模式下，想用this指向window，可以在外面缓存一下this
-5.reject：改变实力对象的状态为rejected
-6.及调用resolve有调用reject时，状态只能改一次，只能从pending变fulfilled或者rejected，promise中有可能电泳多次，只让第一次生效，判断一下是不是pending状态
-7.调用时可能传参，一旦传参，实例对象返回该参数，
+> Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及该异步操作的结果值。
+### 目的
+1. 首先定义构造函数Promise，外面要调用，返回Promise(先搭框架)
+2. 实现原型上的方法
+3. 实现构造函数上的方法
+### 实现步骤
+1. 默认promise实例对象的值是初识状态是pending，通过new调用this指向实例对象，通过this.status给实例对象添加状态
+2. 还要定义一步结果的值，this.data=undefined作为异步返回值
+3. promise中穿了一个函数executor，需要立即调用,executor(resolve, reject)传参为两个函数，定义resolve，和reject
+4. resolve做的事情：改变实力对象的状态为fulfilled，在严格模式下，想用this指向window，可以在外面缓存一下this
+5. reject：改变实力对象的状态为rejected
+6. 及调用resolve有调用reject时，状态只能改一次，只能从pending变fulfilled或者rejected，promise中有可能电泳多次，只让第一次生效，判断一下是不是pending状态
+7. 调用时可能传参，一旦传参，实例对象返回该参数，
+>改成失败的状态还有throw error，希望抛出异常也会报错，给executor包一个try..catch
 
-改成失败的状态还有throw error，希望抛出异常也会报错，给executor抱一个try..catch
-::: details 点击查看代码
+
+#### 创建Promise
 ```js
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() : // 检测是否是commonjs，如果是就以commonjs方式暴露
@@ -85,14 +84,15 @@ Promise 对象用于表示一个异步操作的最终状态（完成或失败）
 
 })))
 ```
-自己定义函数的是可以将原生的覆盖掉，先对then方法进行实现
+>自己定义函数的是可以将原生的覆盖掉，先对then方法进行实现
 
-每一个Promise对象都有三个状态
-pending：初始状态
-fulFilled ：成功状态
-rejected ：失败的状态
-Promise对象的状态只能从pending变为fulFilled或者由pending变为rejected，不能有fulFilled变为rejected
-resolve传参数value，成功的数据，rejeced传参reason ,当异步任务顺利完成且返回结果值时，会调用 resolve 函数；而当异步任务失败且返回失败原因（通常是一个错误对象）时，会调用reject 函数。
+* 每一个Promise对象都有三个状态
+* pending：初始状态
+* fulFilled ：成功状态
+* rejected ：失败的状态
+* Promise对象的状态只能从pending变为fulFilled或者由pending变为rejected，不能有fulFilled变为rejected
+* resolve传参数value，成功的数据，rejeced传参reason ,当异步任务顺利完成且返回结果值时，会调用 resolve 函数；而当异步任务失败且返回失败原因（通常是一个错误对象）时，会调用reject 函数。
+```js
 function Promise(executor) {
         this.status = 'pending';
         this.data = undefined;
@@ -131,9 +131,10 @@ Promise.prototype.then = function (onFullFilled, onRejected) {
             onRejected:onrejected,
       })
     }
+```
 至此，完成了一个最简单的promise 的then方法实现，但是还不能链式调用
 创建html文件引入自己创建的Promise，对这段代码进行测试
-
+```js
  const promise = new Promise((resolve, reject) => {
         resolve(11);
         // reject(22);
@@ -150,11 +151,13 @@ Promise.prototype.then = function (onFullFilled, onRejected) {
       }
     )
     console.log('同步代码执行完了');
+```    
 下面要开始实现链式调用了。
 要想实现then方法的链式调用返回值，then方法的返回值必须是一个新的promise对象
 添加解决(fulfillment)和拒绝(rejection)回调到当前 promise, 返回一个新的 promise, 将以回调的返回值来resolve.
 当前操作的Promise对象，有三种状态，内种状态对应着不同的方法
 pending 状态的 Promise 对象可能会变为fulfilled 状态并传递一个值给相应的状态处理方法，也可能变为失败状态（rejected）并传递失败信息。当其中任一种情况出现时，Promise 对象的 then 方法绑定的处理方法（handlers ）就会被调用（then方法包含两个参数：onfulfilled 和 onrejected，它们都是 Function 类型。当Promise状态为fulfilled时，调用 then 的 onfulfilled 方法，当Promise状态为rejected时，调用 then 的 onrejected 方法）
+```js
 Promise.prototype.then = function (onFulFilled, onRejected) {
         // this.callacks.push({
         //     onFulFilled:onFulFilled,
@@ -265,8 +268,9 @@ Promise.prototype.then = function (onFulFilled, onRejected) {
         }
        return promise//调用then方法需要返回一个promise对象，返回的这个promise对象
     };
+```   
 公共代码可提取出来
-
+```js
   Promise.prototype.then = function (onFulFilled, onRejected) {
         // this.callacks.push({
         //     onFulFilled:onFulFilled,
@@ -322,14 +326,18 @@ Promise.prototype.then = function (onFulFilled, onRejected) {
             reject(e)//将promise1的状态改为reject，并将e传给了promise(0)
         }
     }
+```
 catch 方法的实现
 本质上 catch方法就是then方法的失败
+```js
 Promise.prototype.catch = function (onReject) {
         return this.then(null,onReject)
   };
+```  
 resolve 方法实现
 resolve 方法的使用
 如上面提到的resolve本质上是个函数，在实际使用时有两种情况，如果value是一个promise函数，则应该将promise函数返回去，如果是普通参数，就应该返回一个promise值
+```js
 Promise.resolve = function (value) {
     if (value instanceof Promise) return value;
 
@@ -343,9 +351,10 @@ Promise.reject = function (reason) {
       reject(reason);
     })
   };
-
+```
 实现all方法
 必须所有的promise 都成功才能返回成功，否则报错
+```js
 Promise.all = function (promises) {
     let resolvedNum = 0;
     const promisesLength = promises.length;
@@ -369,7 +378,10 @@ Promise.all = function (promises) {
       })
     })
   };
+``` 
 实现race
+```js
+
   Promise.race = function (promises) {
 
     // return new Promise((resolve, reject) => promises.forEach((promise) => promise.then(resolve, reject)))
@@ -387,3 +399,4 @@ Promise.all = function (promises) {
     })
 
   };
+```  
