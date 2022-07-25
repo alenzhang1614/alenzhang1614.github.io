@@ -30,6 +30,12 @@ module.exports = [
             { text: 'TODO-2', link: '/node/TODO2/' },
             { text: 'TODO-3', link: '/node/TODO3/' },
         ]
-    },
+    }, {
+      text: '面试',
+      items: [
+          { text: '简历', link: '/inerview/resume/promise' },
+          { text: '面试题', link: '/interview/question/' },
+      ]
+  },
   
 ]

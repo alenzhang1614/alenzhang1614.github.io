@@ -6,7 +6,7 @@
       <menubar mode="horizontal" :menus="navs"></menubar>
     </el-header>
     <el-container>
-      <el-aside width="260px">
+      <el-aside width="260px" v-if="siderbar">
         <menubar :menus="siderbar"></menubar>
       </el-aside>
       <div class="content"><Content /></div>
@@ -36,7 +36,8 @@ export default {
       let sideKey = Object.keys(sidebarConfig).find(side => this.$route.path.includes(side))
       const side = sidebarConfig[sideKey]
       const pages = this.$site?.pages?.filter(page => page.path.includes(sideKey))
-      return side.map(item => {
+    
+      return side?.map(item => {
         return {
           ...item,
           text:item.title,
